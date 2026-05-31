@@ -2,7 +2,7 @@
   "name": "Calculadora Hemodiálisis",
   "short_name": "HD Calc",
   "description": "Calculadora de ganancia hídrica interdialítica y ultrafiltración",
-  "start_url": "./index.html",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#f9fafb",
   "theme_color": "#1a56db",
