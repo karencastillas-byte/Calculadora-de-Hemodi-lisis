@@ -1,81 +1,52 @@
-# 🩺 HD Monitor PWA
+# 💧 Calculadora de Hemodiálisis
 
-Aplicación web progresiva (PWA) diseñada como herramienta de apoyo clínico para el registro y análisis rápido de indicadores en pacientes en hemodiálisis.
+Aplicación web progresiva (PWA) para estimar ganancia hídrica interdialítica, volumen de ultrafiltración (UF) y tasa de ultrafiltración (UFR) en pacientes en hemodiálisis.
 
-## 📌 Propósito
+## Características
 
-Esta aplicación tiene como objetivo facilitar el cálculo y visualización rápida de indicadores básicos utilizados en el manejo de pacientes en hemodiálisis, especialmente:
+* Cálculo de ganancia hídrica interdialítica (% del peso seco).
+* Cálculo de volumen total de ultrafiltración (UF).
+* Cálculo de tasa de ultrafiltración (mL/kg/h).
+* Clasificación automática del riesgo mediante semáforo clínico.
+* Perfiles cardiovasculares:
 
-- Balance hídrico
-- Ganancia interdialítica (IDWG)
-- Control de peso seco vs peso pre-diálisis
-- Alertas clínicas básicas
+  * Paciente estándar.
+  * Riesgo cardiovascular moderado.
+  * FEVI < 40% / riesgo cardiovascular alto.
+* Recomendaciones clínicas orientativas según la tasa de UF.
+* Cálculo de peso máximo recomendado al ingreso.
+* Sugerencias de corrección cuando se superan los límites recomendados.
+* Historial local de consultas.
+* Funciona sin conexión mediante Progressive Web App (PWA).
 
-No reemplaza el juicio clínico ni sistemas institucionales de historia clínica.
+## Privacidad
 
----
+Esta aplicación está diseñada para minimizar el manejo de datos personales.
 
-## ⚙️ Funcionalidades actuales
+* No solicita nombres de pacientes.
+* No solicita documentos de identidad.
+* No solicita números de historia clínica.
+* No almacena información personal identificable.
+* Los cálculos se realizan localmente en el dispositivo.
+* La información se almacena únicamente en el navegador mediante Local Storage.
+* No se envían datos a servidores externos.
+* No existe sincronización en la nube ni transmisión automática de información.
 
-- Cálculo automático de ganancia de peso interdialítica
-- Cálculo de porcentaje de sobrecarga hídrica
-- Registro básico de datos por paciente
-- Visualización rápida de indicadores clave
-- Funciona como PWA (instalable en dispositivos móviles)
+## Uso previsto
 
----
+Esta herramienta tiene fines educativos y de apoyo clínico para profesionales de la salud involucrados en el cuidado de pacientes en hemodiálisis.
 
-## 🧠 Uso clínico previsto
+Los resultados deben interpretarse dentro del contexto clínico individual de cada paciente y no sustituyen el juicio clínico, la valoración médica ni los protocolos institucionales.
 
-Herramienta de apoyo para personal de salud en unidades de hemodiálisis, orientada a:
+## Limitación de responsabilidad
 
-- Toma de decisiones rápida en turno
-- Reducción de cálculos manuales
-- Seguimiento básico de estabilidad de volumen
+La prescripción de ultrafiltración debe considerar factores adicionales como:
 
----
+* Estabilidad hemodinámica.
+* Función cardíaca.
+* Comorbilidades.
+* Síntomas del paciente.
+* Objetivos de peso seco.
+* Protocolos y lineamientos institucionales.
 
-## 📱 Instalación
-
-La aplicación puede instalarse como PWA:
-
-- En Android: “Agregar a pantalla de inicio”
-- En iOS (Safari): “Agregar a pantalla de inicio”
-
----
-
-## 🚀 Tecnologías
-
-- HTML5
-- CSS3
-- JavaScript
-- Service Worker (PWA)
-- GitHub Pages para despliegue
-
----
-
-## 📂 Estructura del proyecto
-
-Ver sección de estructura en este documento.
-
----
-
-## 👩‍⚕️ Autoría
-
-Desarrollado por: **Karen Julieth Castilla Serrano**  
-Fecha de inicio: 31 de mayo de 2026 
-Uso: herramienta de apoyo clínico personal/profesional en hemodiálisis
-
----
-
-## ⚠️ Responsabilidad
-
-Esta aplicación es una herramienta de apoyo y no sustituye protocolos clínicos, guías médicas ni sistemas institucionales de historia clínica.
-
-El usuario es responsable del uso clínico de la información generada.
-
----
-
-## 📜 Licencia
-
-Este proyecto está bajo licencia MIT (ver archivo LICENSE).
+El desarrollador no asume responsabilidad por decisiones clínicas tomadas exclusivamente con base en los resultados generados por esta herramienta.
