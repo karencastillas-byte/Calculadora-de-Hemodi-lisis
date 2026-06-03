@@ -474,6 +474,37 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
       </div>
     </div>
 
+       <!-- ── Sección UF sugerida FEVI ── -->
+    </div>
+
+    <!-- Aviso clínico -->
+    <div class="card" id="disclaimer-card">
+      <div class="card-title">Consideraciones clínicas</div>
+
+      <div style="
+        background:#f8fafc;
+        border:1px solid #cbd5e1;
+        border-radius:8px;
+        padding:14px;
+        font-size:13px;
+        line-height:1.7;
+        color:#334155;">
+
+        <strong>Uso orientativo.</strong>
+
+        Los cálculos presentados corresponden a una herramienta de apoyo para la estimación de ganancia hídrica, volumen de ultrafiltración y tasa de ultrafiltración (UFR).
+
+        <br><br>
+
+        Los resultados deben interpretarse en el contexto clínico individual de cada paciente y no sustituyen la valoración médica, el juicio clínico profesional ni las decisiones terapéuticas del equipo tratante.
+
+        <br><br>
+
+        La prescripción de ultrafiltración debe considerar variables adicionales como estabilidad hemodinámica, función cardíaca, comorbilidades, síntomas, objetivos de peso seco y protocolos institucionales.
+
+      </div>
+    </div>
+
     <!-- Historial -->
     <div class="card">
       <div class="hist-header">
@@ -705,11 +736,25 @@ function validarEntradas(ps, pi) {
  * @returns {{ ganancia, ghPct, ufTotal, ufRate }}
  */
 function calcularUF(ps, pi, ufAdicional, horas) {
-  var ganancia   = pi - ps;
-  var ghPct      = (ganancia / ps) * 100;
-  var ufTotal    = (ganancia * 1000) + ufAdicional;
-  var ufRate     = ufTotal / (ps * horas);
-  return { ganancia: ganancia, ghPct: ghPct, ufTotal: ufTotal, ufRate: ufRate };
+
+  var ganancia = pi - ps;
+  var ghPct    = (ganancia / ps) * 100;
+
+  var ufTotal = (ganancia * 1000) + ufAdicional;
+
+  // Evitar UF negativa
+  if (ufTotal < 0) {
+    ufTotal = 0;
+  }
+
+  var ufRate = ufTotal / (ps * horas);
+
+  return {
+    ganancia: ganancia,
+    ghPct: ghPct,
+    ufTotal: ufTotal,
+    ufRate: ufRate
+  };
 }
 
 /**
