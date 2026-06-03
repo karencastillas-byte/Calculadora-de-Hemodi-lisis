@@ -1012,7 +1012,7 @@ function renderHistorial() {
 
     return '<div class="hist-item">' +
       '<div>' +
-        '<div class="hist-name">' + h.nombre + perfilLabel + '</div>' +
+       '<div class="hist-name">' + perfilLabel + '</div>' +
         '<div class="hist-date">' + h.fecha + '</div>' +
       '</div>' +
       '<div class="hist-right">' +
@@ -1027,12 +1027,12 @@ function renderHistorial() {
 
 /** Limpia el formulario completamente */
 function limpiarFormulario() {
-  document.getElementById('nombre').value       = '';
   document.getElementById('peso-seco').value    = '';
   document.getElementById('peso-ingreso').value = '';
   document.getElementById('uf-adicional').value = '';
   ocultarAlertas();
 }
+
 
 /* ════════════════════════════════════════════════════════
    HELPERS DE UI
@@ -1083,7 +1083,7 @@ function mostrarFormulario() {
 function onCalcular() {
   ocultarAlertas();
 
-  var nombre      = document.getElementById('nombre').value.trim() || 'Paciente';
+
   var ps          = parseFloat(document.getElementById('peso-seco').value);
   var pi          = parseFloat(document.getElementById('peso-ingreso').value);
   var ufAdicional = parseFloat(document.getElementById('uf-adicional').value) || 0;
@@ -1101,7 +1101,7 @@ function onCalcular() {
 
   var sesion = {
     id:     generarId(),
-    nombre: nombre,
+  
     perfil: App.perfil,
     fecha:  fecha,
     ufRate: calc.ufRate.toFixed(1),
