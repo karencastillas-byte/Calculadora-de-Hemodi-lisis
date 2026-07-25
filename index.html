@@ -801,11 +801,21 @@ function calcularUF(ps, pi, ufAdicional, horas) {
  * @param {number} limiteRate  - Límite de UF en mL/kg/h
  * @returns {{ ufMaxMl, ganMaxKg, pesoMaxIngreso }}
  */
-function calcularPesoMaximoIngreso(ps, horas, limiteRate) {
-  var ufMaxMl       = limiteRate * ps * horas;
-  var ganMaxKg      = ufMaxMl / 1000;
-  var pesoMaxIngreso = ps + ganMaxKg;
-  return { ufMaxMl: ufMaxMl, ganMaxKg: ganMaxKg, pesoMaxIngreso: pesoMaxIngreso };
+function calcularPesoMaximoIngreso(ps, horas, limiteRate, ufAdicional) {
+  var ufMaxMl = limiteRate * ps * horas;
+
+  var ganMaxKg = ufMaxMl / 1000;
+
+  // Ajuste por volumen adicional UF (cebado, antibióticos, infusiones, restituciones)
+  var adicionalKg = ufAdicional / 1000;
+
+  var pesoMaxIngreso = ps + ganMaxKg - adicionalKg;
+
+  return {
+    ufMaxMl: ufMaxMl,
+    ganMaxKg: ganMaxKg,
+    pesoMaxIngreso: pesoMaxIngreso
+  };
 }
 
 /**
