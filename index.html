@@ -802,11 +802,13 @@ function calcularUF(ps, pi, ufAdicional, horas) {
  * @returns {{ ufMaxMl, ganMaxKg, pesoMaxIngreso }}
  */
 function calcularPesoMaximoIngreso(ps, horas, limiteRate, ufAdicional) {
-  var ufMaxMl = limiteRate * ps * horas;
 
+  // Si no se envía volumen adicional, asumir 0 mL
+  ufAdicional = ufAdicional || 0;
+
+  var ufMaxMl = limiteRate * ps * horas;
   var ganMaxKg = ufMaxMl / 1000;
 
-  // Ajuste por volumen adicional UF (cebado, antibióticos, infusiones, restituciones)
   var adicionalKg = ufAdicional / 1000;
 
   var pesoMaxIngreso = ps + ganMaxKg - adicionalKg;
