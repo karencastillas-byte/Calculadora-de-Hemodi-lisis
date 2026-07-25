@@ -1029,7 +1029,7 @@ function renderResultados(calc, categoria, ps, ufAdicional) {
 }
 
 /** Rellena la sección naranja (Normal/Moderado > 13 mL/kg/h) */
-function renderSeccionNormal(ps, ufTotal) {
+function renderSeccionNormal(ps, ufTotal, ufAdicional) {
  var datos = generarOpcionesUF(ps, ufTotal, App.duracion, ufAdicional);
 
   document.getElementById('s-peso-max-ingreso').textContent = datos.pesoMaxIngreso.toFixed(2) + ' kg';
