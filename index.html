@@ -827,7 +827,7 @@ function clasificarRiesgo(ufRate, perfil) {
  * @returns {{ opciones, maxKg, excesoKg, durNecesaria, ufMaxMl }}
  */
 function generarOpcionesUF(ps, ufTotal, horas, ufAdicional) {
-  var segura        = calcularPesoMaximoIngreso(ps, horas, LIMITE_NORMAL);
+  var segura = calcularPesoMaximoIngreso(ps, horas, LIMITE_NORMAL, ufAdicional);
   var excesoKg      = (ufTotal / 1000) - segura.ganMaxKg;
   var durNecesaria  = ufTotal / (LIMITE_NORMAL * ps);
   var opciones      = [];
