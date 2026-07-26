@@ -1042,6 +1042,11 @@ function renderSeccionNormal(ps, ufTotal, ufAdicional) {
   document.getElementById('s-exceso').textContent           = '+' + datos.excesoKg.toFixed(2) + ' kg';
   document.getElementById('s-dur-min').textContent          = datos.durNecesaria.toFixed(1) + ' h';
   document.getElementById('s-uf-max').textContent           = Math.round(datos.ufMaxMl).toLocaleString('es') + ' mL';
+  // Peso proyectado al finalizar la diálisis
+var pesoEgreso = ps + (ufAdicional / 1000);
+
+document.getElementById('s-peso-egreso').textContent =
+pesoEgreso.toFixed(2) + " kg";
 
   document.getElementById('opciones-list').innerHTML = datos.opciones.map(function(o) {
     return '<li><span class="op-icon">' + o.icon + '</span><span>' + o.text + '</span></li>';
