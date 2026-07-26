@@ -12,7 +12,6 @@
 <title>Calculadora Hemodiálisis</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-/* ─── Variables de diseño ─────────────────────────────── */
 :root {
   --blue:#1a56db; --blue-mid:#3b72f6; --blue-light:#ebf0ff;
   --green:#057a55; --green-light:#e3fcef;
@@ -26,26 +25,16 @@
   --radius:10px;
   --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);
 }
-
-/* ─── Reset & base ────────────────────────────────────── */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:2.5rem}
-
-/* ─── Header ──────────────────────────────────────────── */
 .header{background:var(--blue);color:white;padding:1.25rem 1.25rem 1rem;position:sticky;top:0;z-index:10}
 .header-inner{max-width:480px;margin:0 auto;display:flex;align-items:center;gap:10px}
 .header-icon{width:36px;height:36px;background:rgba(255,255,255,.18);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .header h1{font-size:16px;font-weight:600}
 .header p{font-size:12px;opacity:.75;margin-top:1px}
-
-/* ─── Layout ──────────────────────────────────────────── */
 .main{max-width:480px;margin:0 auto;padding:1rem 1rem 0}
-
-/* ─── Card ────────────────────────────────────────────── */
 .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;margin-bottom:12px;box-shadow:var(--shadow)}
 .card-title{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:14px}
-
-/* ─── Formulario ──────────────────────────────────────── */
 .field{margin-bottom:13px}
 .field label{display:block;font-size:13px;font-weight:500;color:var(--text2);margin-bottom:5px}
 .field input{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:16px;font-family:'IBM Plex Sans',sans-serif;color:var(--text);background:var(--white);transition:border-color .15s;-webkit-appearance:none}
@@ -53,137 +42,76 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
 .field input::placeholder{color:var(--text3)}
 .field-hint{font-size:11px;color:var(--text3);margin-top:4px}
 .field-optional{font-size:11px;color:var(--text3);font-weight:400;margin-left:4px}
-
-/* Selector de duración */
 .dur-row{display:flex;gap:7px}
 .dur-btn{flex:1;padding:10px 4px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'IBM Plex Sans',sans-serif;font-weight:500;background:var(--white);color:var(--text2);cursor:pointer;transition:all .15s}
 .dur-btn.active{background:var(--blue);border-color:var(--blue);color:white}
-
-/* ─── Selector de perfil cardiovascular ──────────────── */
 .perfil-row{display:flex;flex-direction:column;gap:7px}
 .perfil-btn{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:'IBM Plex Sans',sans-serif;font-weight:500;background:var(--white);color:var(--text2);cursor:pointer;transition:all .15s;text-align:left;display:flex;align-items:center;gap:10px}
 .perfil-btn .perfil-dot{width:10px;height:10px;border-radius:50%;background:var(--border);flex-shrink:0;transition:background .15s}
 .perfil-btn .perfil-info{flex:1}
 .perfil-btn .perfil-titulo{font-size:13px;font-weight:500;color:var(--text2)}
 .perfil-btn .perfil-sub{font-size:11px;color:var(--text3);margin-top:1px}
-/* Normal */
 .perfil-btn.active-normal{border-color:#057a55;background:#f0fdf4}
 .perfil-btn.active-normal .perfil-dot{background:#057a55}
 .perfil-btn.active-normal .perfil-titulo{color:#064e3b}
-/* Moderado */
 .perfil-btn.active-moderado{border-color:var(--amber);background:var(--amber-light)}
 .perfil-btn.active-moderado .perfil-dot{background:var(--amber)}
 .perfil-btn.active-moderado .perfil-titulo{color:#78350f}
-/* FEVI */
 .perfil-btn.active-fevi{border-color:var(--purple);background:var(--purple-light)}
 .perfil-btn.active-fevi .perfil-dot{background:var(--purple)}
 .perfil-btn.active-fevi .perfil-titulo{color:#4c1d95}
-
-/* ─── Banner perfil FEVI activo ───────────────────────── */
-.fevi-banner{display:none;background:var(--purple-light);border:1px solid var(--purple-border);border-radius:8px;padding:.75rem 1rem;margin-bottom:12px;font-size:13px;color:var(--purple);line-height:1.5}
-.fevi-banner strong{display:block;font-size:12px;font-weight:600;margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em}
-
-/* Botón calcular */
 .calc-btn{width:100%;padding:14px;background:var(--blue);color:white;border:none;border-radius:8px;font-size:16px;font-weight:600;font-family:'IBM Plex Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .15s,transform .1s;margin-top:4px}
 .calc-btn:active{opacity:.88;transform:scale(.98)}
-
-/* ─── Avisos inline ───────────────────────────────────── */
 .alert{border-radius:8px;padding:.75rem 1rem;font-size:13px;margin-bottom:12px;display:none;line-height:1.5}
 .alert-error{background:var(--red-light);border:1px solid #fecaca;color:var(--red)}
 .alert-warn{background:var(--amber-light);border:1px solid #fde68a;color:var(--amber)}
 .alert strong{display:block;margin-bottom:2px;font-weight:600}
-
-/* ─── Resultados ──────────────────────────────────────── */
 .results{display:none}
-
-/* Badge de perfil en resultados */
 .perfil-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;margin-bottom:12px}
 .perfil-badge-normal  {background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
 .perfil-badge-moderado{background:var(--amber-light);color:var(--amber);border:1px solid #fde68a}
 .perfil-badge-fevi    {background:var(--purple-light);color:var(--purple);border:1px solid var(--purple-border)}
-
-/* Semáforo de riesgo */
 .risk-card{border-radius:var(--radius);padding:1rem 1.1rem;margin-bottom:12px;display:flex;align-items:flex-start;gap:12px;box-shadow:var(--shadow)}
 .risk-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;margin-top:1px}
 .risk-label{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px;opacity:.8}
 .risk-title{font-size:15px;font-weight:600}
 .risk-sub{font-size:13px;margin-top:3px;opacity:.85}
-
-/* Colores semáforo — paciente normal */
 .risk-optimo   {background:#f0fdf4}.risk-optimo .risk-icon{background:#bbf7d0}.risk-optimo .risk-title{color:#14532d}.risk-optimo .risk-sub,.risk-optimo .risk-label{color:#166534}
 .risk-aceptable{background:var(--teal-light)}.risk-aceptable .risk-icon{background:#a5f3fc}.risk-aceptable .risk-title{color:#164e63}.risk-aceptable .risk-sub,.risk-aceptable .risk-label{color:var(--teal)}
 .risk-alto     {background:var(--amber-light)}.risk-alto .risk-icon{background:#fde68a}.risk-alto .risk-title{color:#78350f}.risk-alto .risk-sub,.risk-alto .risk-label{color:var(--amber)}
 .risk-muyalto  {background:var(--red-light)}.risk-muyalto .risk-icon{background:#fecaca}.risk-muyalto .risk-title{color:#7f1d1d}.risk-muyalto .risk-sub,.risk-muyalto .risk-label{color:var(--red)}
-/* Colores semáforo — FEVI <40% */
 .risk-fevi-optimo  {background:var(--purple-light)}.risk-fevi-optimo .risk-icon{background:#e9d5ff}.risk-fevi-optimo .risk-title{color:#4c1d95}.risk-fevi-optimo .risk-sub,.risk-fevi-optimo .risk-label{color:var(--purple)}
 .risk-fevi-limite  {background:#fdf4ff}.risk-fevi-limite .risk-icon{background:#f3e8ff}.risk-fevi-limite .risk-title{color:#6b21a8}.risk-fevi-limite .risk-sub,.risk-fevi-limite .risk-label{color:#7e22ce}
 .risk-fevi-excede  {background:var(--red-light)}.risk-fevi-excede .risk-icon{background:#fecaca}.risk-fevi-excede .risk-title{color:#7f1d1d}.risk-fevi-excede .risk-sub,.risk-fevi-excede .risk-label{color:var(--red)}
-
-/* Métricas */
 .metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
 .metric{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem}
 .metric-label{font-size:11px;color:var(--text3);font-weight:500;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
 .metric-value{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:500;color:var(--text);line-height:1}
 .metric-unit{font-size:11px;color:var(--text3);margin-top:4px}
 .metric-note{font-size:10px;color:var(--blue);margin-top:3px;font-style:italic}
-
-/* Recomendación clínica */
 .recom{background:#f0f4ff;border-left:3px solid var(--blue-mid);border-radius:0 8px 8px 0;padding:.9rem 1rem;margin-bottom:12px}
 .recom-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);margin-bottom:6px}
 .recom p{font-size:13px;color:#1e3a8a;line-height:1.6}
-/* Recomendación FEVI */
 .recom-fevi{background:var(--purple-light);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:.9rem 1rem;margin-bottom:12px}
 .recom-fevi .recom-title{color:var(--purple)}
 .recom-fevi p{font-size:13px;color:#4c1d95;line-height:1.6}
-
-/* Botones acción */
 .btn-row{display:flex;gap:8px;margin-bottom:12px}
 .btn-corregir{flex:1;padding:12px;background:var(--blue-light);border:1.5px solid #bfdbfe;border-radius:8px;font-size:14px;font-weight:500;font-family:'IBM Plex Sans',sans-serif;color:var(--blue);cursor:pointer;transition:background .15s}
 .btn-corregir:active{background:#dbeafe}
 .btn-nueva{flex:1;padding:12px;background:transparent;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-weight:500;font-family:'IBM Plex Sans',sans-serif;color:var(--text2);cursor:pointer;transition:background .15s}
 .btn-nueva:active{background:var(--bg)}
-
-/* ─── Sección UF sugerida (naranja — normal/moderado) ─── */
+/* SECCIÓN NARANJA */
 .uf-section{display:none;margin-bottom:12px}
 .uf-inner{background:var(--orange-light);border:1px solid var(--orange-border);border-radius:var(--radius);padding:1rem 1.1rem;box-shadow:var(--shadow)}
 .uf-header{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
-
-/* Caja peso máximo destacada */
 .peso-max-box{background:white;border:2px solid var(--orange);border-radius:10px;padding:1rem 1.1rem;margin-bottom:12px;text-align:center}
 .peso-max-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--orange);margin-bottom:6px}
 .peso-max-valor{font-family:'IBM Plex Mono',monospace;font-size:32px;font-weight:500;color:#7c2d12;line-height:1;margin-bottom:5px}
 .peso-max-sub{font-size:12px;color:#9a3412}
-
- /* Caja peso proyectado postdiálisis */
-.peso-egreso-box{
-  margin-top:16px;
-  padding:18px;
-  border-radius:18px;
-  background:linear-gradient(135deg,#10b981,#059669);
-  color:#fff;
-  text-align:center;
-  box-shadow:0 10px 25px rgba(5,150,105,.25);
-}
-
-.peso-egreso-label{
-  font-size:11px;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.06em;
-  margin-bottom:8px;
-}
-
-.peso-egreso-valor{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:34px;
-  font-weight:600;
-  line-height:1;
-  margin-bottom:6px;
-}
-
-.peso-egreso-sub{
-  font-size:12px;
-}
+.peso-egreso-box{margin-top:12px;margin-bottom:12px;padding:1rem 1.1rem;border-radius:10px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;text-align:center}
+.peso-egreso-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.peso-egreso-valor{font-family:'IBM Plex Mono',monospace;font-size:34px;font-weight:600;line-height:1;margin-bottom:6px}
+.peso-egreso-sub{font-size:12px;opacity:.9}
 .uf-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
 .uf-metric{background:white;border:1px solid var(--orange-border);border-radius:8px;padding:.8rem .9rem}
 .uf-metric .ml{font-size:11px;color:#9a3412;font-weight:500;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
@@ -195,23 +123,18 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
 .opciones-list li:last-child{border-bottom:none;padding-bottom:0}
 .opciones-list li:first-child{padding-top:0}
 .op-icon{font-size:16px;flex-shrink:0;margin-top:1px}
-
-/* ─── Sección UF FEVI (púrpura) ───────────────────────── */
+/* SECCIÓN FEVI */
 .uf-section-fevi{display:none;margin-bottom:12px}
 .uf-inner-fevi{background:var(--purple-light);border:1px solid var(--purple-border);border-radius:var(--radius);padding:1rem 1.1rem;box-shadow:var(--shadow)}
 .uf-header-fevi{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--purple);margin-bottom:12px}
-
-/* Caja peso máximo FEVI */
 .peso-max-box-fevi{background:white;border:2px solid var(--purple);border-radius:10px;padding:1rem 1.1rem;margin-bottom:12px;text-align:center}
 .peso-max-label-fevi{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--purple);margin-bottom:6px}
 .peso-max-valor-fevi{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:500;color:#4c1d95;line-height:1;margin-bottom:5px}
 .peso-max-sub-fevi{font-size:12px;color:#6b21a8}
-
-/* Rango seguro FEVI — dos columnas destacadas */
 .fevi-rango-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
 .fevi-rango-col{background:white;border-radius:8px;padding:.85rem 1rem;text-align:center}
-.fevi-rango-col.optimo {border:2px solid #a855f7}
-.fevi-rango-col.limite {border:2px solid var(--red)}
+.fevi-rango-col.optimo{border:2px solid #a855f7}
+.fevi-rango-col.limite{border:2px solid var(--red)}
 .fevi-rango-etiq{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
 .fevi-rango-col.optimo .fevi-rango-etiq{color:#7e22ce}
 .fevi-rango-col.limite .fevi-rango-etiq{color:var(--red)}
@@ -221,7 +144,6 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
 .fevi-rango-sub{font-size:11px;margin-top:3px}
 .fevi-rango-col.optimo .fevi-rango-sub{color:#7e22ce}
 .fevi-rango-col.limite .fevi-rango-sub{color:var(--red)}
-
 .uf-grid-fevi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
 .uf-metric-fevi{background:white;border:1px solid var(--purple-border);border-radius:8px;padding:.8rem .9rem}
 .uf-metric-fevi .ml{font-size:11px;color:#6b21a8;font-weight:500;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
@@ -232,8 +154,7 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
 .opciones-list-fevi li{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:1px solid var(--purple-border);font-size:13px;color:#4c1d95;line-height:1.55}
 .opciones-list-fevi li:last-child{border-bottom:none;padding-bottom:0}
 .opciones-list-fevi li:first-child{padding-top:0}
-
-/* ─── Historial ───────────────────────────────────────── */
+/* HISTORIAL */
 .hist-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .hist-header .card-title{margin-bottom:0}
 .btn-borrar-hist{padding:5px 10px;background:transparent;border:1px solid #fecaca;border-radius:6px;font-size:12px;font-weight:500;font-family:'IBM Plex Sans',sans-serif;color:var(--red);cursor:pointer;transition:background .15s}
@@ -257,8 +178,6 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
 .pill-muyalto  {background:var(--red-light);color:var(--red)}
 .pill-fevi     {background:var(--purple-light);color:var(--purple)}
 .empty{text-align:center;padding:1.5rem 0;color:var(--text3);font-size:13px}
-
-/* ─── Footer ──────────────────────────────────────────── */
 .footer{text-align:center;padding:1.5rem 1rem 0;font-size:12px;color:var(--text3);max-width:480px;margin:0 auto}
 </style>
 </head>
@@ -276,17 +195,12 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
 
 <div class="main">
 
-  <!-- Avisos globales -->
   <div class="alert alert-error" id="alert-error"></div>
   <div class="alert alert-warn"  id="alert-warn"></div>
 
-  <!-- ══════════════════════════════════════
-       FORMULARIO
-  ══════════════════════════════════════ -->
+  <!-- FORMULARIO -->
   <div class="card" id="form-card">
     <div class="card-title">Datos del paciente</div>
-
-    
 
     <div class="field">
       <label for="peso-seco">Peso seco (kg)</label>
@@ -295,7 +209,7 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
 
     <div class="field">
       <label for="peso-ingreso">Peso de ingreso (kg)</label>
-<input type="text" id="peso-ingreso" placeholder="0.0" inputmode="decimal" autocomplete="off">
+      <input type="text" id="peso-ingreso" placeholder="0.0" inputmode="decimal" autocomplete="off">
     </div>
 
     <div class="field">
@@ -307,7 +221,6 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
       <div class="field-hint">Incluye cebado, antibióticos, infusiones o restituciones.</div>
     </div>
 
-    <!-- Perfil cardiovascular -->
     <div class="field">
       <label>Perfil cardiovascular del paciente</label>
       <div class="perfil-row">
@@ -356,15 +269,11 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
     </button>
   </div>
 
-  <!-- ══════════════════════════════════════
-       RESULTADOS
-  ══════════════════════════════════════ -->
+  <!-- RESULTADOS -->
   <div class="results" id="results">
 
-    <!-- Badge de perfil activo -->
     <div id="perfil-badge-res"></div>
 
-    <!-- Semáforo de riesgo -->
     <div id="risk-card" class="risk-card">
       <div class="risk-icon"  id="risk-icon"></div>
       <div>
@@ -374,7 +283,6 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
       </div>
     </div>
 
-    <!-- Métricas principales -->
     <div class="metrics">
       <div class="metric">
         <div class="metric-label">Ganancia hídrica</div>
@@ -399,35 +307,36 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
       </div>
     </div>
 
-    <!-- Recomendación clínica -->
     <div id="recom-box" class="recom">
       <div class="recom-title">Recomendación clínica</div>
       <p id="recom-text"></p>
     </div>
 
-    <!-- Botones corregir / nueva consulta -->
     <div class="btn-row">
       <button class="btn-corregir" onclick="onCorregir()">✏️ Corregir datos</button>
       <button class="btn-nueva"    onclick="onNuevaConsulta()">+ Nueva consulta</button>
     </div>
 
-    <!-- ── Sección UF sugerida — paciente Normal / Moderado ── -->
+    <!-- SECCIÓN NARANJA — Normal / Moderado (UFR > 13) -->
+    <!-- BUG 1 CORREGIDO: IDs s-peso-max-ingreso y s-peso-max-horas restaurados -->
+    <!-- BUG 2 CORREGIDO: div.uf-grid duplicado eliminado                        -->
     <div class="uf-section" id="uf-section">
       <div class="uf-inner">
         <div class="uf-header">⚠️ Ultrafiltración sugerida para no superar el límite</div>
 
-  
+        <div class="peso-max-box">
+          <div class="peso-max-label">Peso máximo recomendado al ingreso</div>
+          <div class="peso-max-valor" id="s-peso-max-ingreso">—</div>
+          <div class="peso-max-sub">para no superar 13 mL/kg/h en <span id="s-peso-max-horas">—</span> h</div>
+        </div>
 
-      <!-- Peso proyectado postdiálisis -->
-<div class="peso-egreso-box">
-  <div class="peso-egreso-label">Peso proyectado postdiálisis</div>
-  <div class="peso-egreso-valor" id="s-peso-egreso">—</div>
-  <div class="peso-egreso-sub">
-    Proyección según UF programada y parámetros de sesión.
-  </div>
-</div>
+        <!-- BUG 3 CORREGIDO: peso egreso = peso ingreso - UF total en kg -->
+        <div class="peso-egreso-box">
+          <div class="peso-egreso-label">⚖️ Peso proyectado postdiálisis</div>
+          <div class="peso-egreso-valor" id="s-peso-egreso">—</div>
+          <div class="peso-egreso-sub">Si se completa la UF programada</div>
+        </div>
 
-<div class="uf-grid">
         <div class="uf-grid">
           <div class="uf-metric">
             <div class="ml">Ganancia máx. segura</div>
@@ -450,24 +359,23 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
             <div class="mu">mL (límite 13 mL/kg/h)</div>
           </div>
         </div>
+
         <div class="opciones-title">Opciones para corregir</div>
         <ul class="opciones-list" id="opciones-list"></ul>
       </div>
     </div>
 
-    <!-- ── Sección UF sugerida — paciente FEVI <40% ── -->
+    <!-- SECCIÓN PÚRPURA — FEVI <40% -->
     <div class="uf-section-fevi" id="uf-section-fevi">
       <div class="uf-inner-fevi">
         <div class="uf-header-fevi">💜 Límites de UF para FEVI &lt;40% / Riesgo CV alto</div>
 
-        <!-- Peso máximo FEVI -->
         <div class="peso-max-box-fevi">
           <div class="peso-max-label-fevi">Peso máximo recomendado al ingreso</div>
           <div class="peso-max-valor-fevi" id="f-peso-max-ingreso">—</div>
           <div class="peso-max-sub-fevi">para no superar 10 mL/kg/h en <span id="f-peso-max-horas">—</span> h · FEVI &lt;40%</div>
         </div>
 
-        <!-- Rango 8–10 mL/kg/h -->
         <div class="fevi-rango-row">
           <div class="fevi-rango-col optimo">
             <div class="fevi-rango-etiq">UF óptima</div>
@@ -509,34 +417,16 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
       </div>
     </div>
 
-       <!-- ── Sección UF sugerida FEVI ── -->
-    </div>
-
     <!-- Aviso clínico -->
     <div class="card" id="disclaimer-card">
       <div class="card-title">Consideraciones clínicas</div>
-
-      <div style="
-        background:#f8fafc;
-        border:1px solid #cbd5e1;
-        border-radius:8px;
-        padding:14px;
-        font-size:13px;
-        line-height:1.7;
-        color:#334155;">
-
+      <div style="background:#f8fafc;border:1px solid #cbd5e1;border-radius:8px;padding:14px;font-size:13px;line-height:1.7;color:#334155;">
         <strong>Uso orientativo.</strong>
-
         Los cálculos presentados corresponden a una herramienta de apoyo para la estimación de ganancia hídrica, volumen de ultrafiltración y tasa de ultrafiltración (UFR).
-
         <br><br>
-
         Los resultados deben interpretarse en el contexto clínico individual de cada paciente y no sustituyen la valoración médica, el juicio clínico profesional ni las decisiones terapéuticas del equipo tratante.
-
         <br><br>
-
         La prescripción de ultrafiltración debe considerar variables adicionales como estabilidad hemodinámica, función cardíaca, comorbilidades, síntomas, objetivos de peso seco y protocolos institucionales.
-
       </div>
     </div>
 
@@ -562,704 +452,249 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
 </div>
 
 <script>
-/* ════════════════════════════════════════════════════════
-   ESTADO GLOBAL DE LA APLICACIÓN
-════════════════════════════════════════════════════════ */
 var App = {
-  duracion:           4,        // horas de sesión seleccionadas
-  perfil:             'normal', // 'normal' | 'moderado' | 'fevi'
-  historial:          [],       // array de sesiones guardadas
-  ultimoIdCorregido:  null      // ID de la sesión en corrección
+  duracion: 4, perfil: 'normal', historial: [], ultimoIdCorregido: null
 };
+var LIMITE_NORMAL = 13, FEVI_OPTIMO = 8, FEVI_MAXIMO = 10;
 
-/* ════════════════════════════════════════════════════════
-   CONSTANTES CLÍNICAS
-   - LIMITE_NORMAL: límite estándar para pacientes sin riesgo CV alto
-   - FEVI_OPTIMO:   tasa óptima para FEVI <40%
-   - FEVI_MAXIMO:   tasa máxima permitida para FEVI <40%
-════════════════════════════════════════════════════════ */
-var LIMITE_NORMAL = 13;  // mL/kg/h
-var FEVI_OPTIMO   = 8;   // mL/kg/h — óptimo para FEVI <40%
-var FEVI_MAXIMO   = 10;  // mL/kg/h — máximo para FEVI <40%
-
-/* ════════════════════════════════════════════════════════
-   PERFILES CARDIOVASCULARES
-   Definen límites, colores y mensajes según el perfil.
-════════════════════════════════════════════════════════ */
 var PERFILES = {
-  normal: {
-    id:          'normal',
-    label:       'Normal',
-    badgeClass:  'perfil-badge-normal',
-    icono:       '🫀'
-  },
-  moderado: {
-    id:          'moderado',
-    label:       'Riesgo CV moderado',
-    badgeClass:  'perfil-badge-moderado',
-    icono:       '⚠️'
-  },
-  fevi: {
-    id:          'fevi',
-    label:       'FEVI <40% / Riesgo CV alto',
-    badgeClass:  'perfil-badge-fevi',
-    icono:       '💜'
-  }
+  normal:   { id:'normal',   label:'Normal',                     badgeClass:'perfil-badge-normal',   icono:'🫀' },
+  moderado: { id:'moderado', label:'Riesgo CV moderado',         badgeClass:'perfil-badge-moderado', icono:'⚠️' },
+  fevi:     { id:'fevi',     label:'FEVI <40% / Riesgo CV alto', badgeClass:'perfil-badge-fevi',     icono:'💜' }
 };
 
-/* ════════════════════════════════════════════════════════
-   CATEGORÍAS DE RIESGO — PACIENTE NORMAL / MODERADO
-   Clasificación basada en tasa de UF (mL/kg/h).
-════════════════════════════════════════════════════════ */
 var CATEGORIAS_NORMAL = [
-  {
-    id:           'optimo',
-    min:          0, max: 8,
-    clase:        'risk-optimo',
-    icono:        '✅',
-    etiqueta:     'Óptimo',
-    titulo:       'Tasa de UF óptima',
-    subtitulo:    '< 8 mL/kg/h — excelente control hídrico',
-    recomendacion:'La ganancia hídrica y la tasa de UF son óptimas. Continuar con el manejo habitual. Reforzar educación sobre restricción hídrica si la ganancia supera el 3% del peso seco.',
-    pillClass:    'pill-optimo', pillTexto: 'Óptimo'
-  },
-  {
-    id:           'aceptable',
-    min:          8, max: 10,
-    clase:        'risk-aceptable',
-    icono:        '🔵',
-    etiqueta:     'Aceptable',
-    titulo:       'Tasa de UF aceptable',
-    subtitulo:    '8–10 mL/kg/h — dentro del rango seguro',
-    recomendacion:'La tasa de UF es aceptable aunque no óptima. Monitorear tolerancia hemodinámica durante la sesión. Reforzar restricción hídrica para reducir la ganancia en próximas sesiones.',
-    pillClass:    'pill-aceptable', pillTexto: 'Aceptable'
-  },
-  {
-    id:           'alto',
-    min:          10, max: 13,
-    clase:        'risk-alto',
-    icono:        '⚠️',
-    etiqueta:     'Alto',
-    titulo:       'Tasa de UF elevada',
-    subtitulo:    '10–13 mL/kg/h — vigilancia requerida',
-    recomendacion:'La tasa de UF se encuentra en zona de riesgo alto. Monitorear signos de inestabilidad hemodinámica. Considerar extender la sesión o ajustar el volumen objetivo. Reforzar urgentemente la restricción hídrica interdialítica.',
-    pillClass:    'pill-alto', pillTexto: 'Alto'
-  },
-  {
-    id:           'muyalto',
-    min:          13, max: Infinity,
-    clase:        'risk-muyalto',
-    icono:        '🔴',
-    etiqueta:     'Muy alto',
-    titulo:       'Tasa de UF muy elevada',
-    subtitulo:    '> 13 mL/kg/h — acción requerida',
-    recomendacion:'La tasa de UF supera el límite seguro de 13 mL/kg/h. Riesgo aumentado de hipotensión intradialítica, isquemia miocárdica y mortalidad. Ver opciones correctivas calculadas a continuación.',
-    pillClass:    'pill-muyalto', pillTexto: 'Muy alto'
-  }
+  { id:'optimo',   min:0,  max:8,        clase:'risk-optimo',   icono:'✅', etiqueta:'Óptimo',    titulo:'Tasa de UF óptima',     subtitulo:'< 8 mL/kg/h — excelente control hídrico',     recomendacion:'La ganancia hídrica y la tasa de UF son óptimas. Continuar con el manejo habitual. Reforzar educación sobre restricción hídrica si la ganancia supera el 3% del peso seco.',                                                                                                            pillClass:'pill-optimo',    pillTexto:'Óptimo'    },
+  { id:'aceptable',min:8,  max:10,       clase:'risk-aceptable',icono:'🔵', etiqueta:'Aceptable',  titulo:'Tasa de UF aceptable',  subtitulo:'8–10 mL/kg/h — dentro del rango seguro',      recomendacion:'La tasa de UF es aceptable aunque no óptima. Monitorear tolerancia hemodinámica durante la sesión. Reforzar restricción hídrica para reducir la ganancia en próximas sesiones.',                                                                                                       pillClass:'pill-aceptable', pillTexto:'Aceptable' },
+  { id:'alto',     min:10, max:13,       clase:'risk-alto',     icono:'⚠️', etiqueta:'Alto',       titulo:'Tasa de UF elevada',    subtitulo:'10–13 mL/kg/h — vigilancia requerida',         recomendacion:'La tasa de UF se encuentra en zona de riesgo alto. Monitorear signos de inestabilidad hemodinámica. Considerar extender la sesión o ajustar el volumen objetivo. Reforzar urgentemente la restricción hídrica interdialítica.',                                                          pillClass:'pill-alto',      pillTexto:'Alto'      },
+  { id:'muyalto',  min:13, max:Infinity, clase:'risk-muyalto',  icono:'🔴', etiqueta:'Muy alto',   titulo:'Tasa de UF muy elevada',subtitulo:'> 13 mL/kg/h — acción requerida',              recomendacion:'La tasa de UF supera el límite seguro de 13 mL/kg/h. Riesgo aumentado de hipotensión intradialítica, isquemia miocárdica y mortalidad. Ver opciones correctivas calculadas a continuación.',                                                                                          pillClass:'pill-muyalto',   pillTexto:'Muy alto'  }
 ];
-
-/* ════════════════════════════════════════════════════════
-   CATEGORÍAS DE RIESGO — FEVI <40%
-   Rango seguro: 8–10 mL/kg/h. Cualquier valor > 10 es
-   considerado peligroso para este perfil.
-════════════════════════════════════════════════════════ */
 var CATEGORIAS_FEVI = [
-  {
-    id:           'fevi-optimo',
-    min:          0, max: 8,
-    clase:        'risk-fevi-optimo',
-    icono:        '💜',
-    etiqueta:     'FEVI — Óptimo',
-    titulo:       'Tasa de UF óptima para FEVI <40%',
-    subtitulo:    '< 8 mL/kg/h — dentro del rango ideal',
-    recomendacion:'La tasa de UF es óptima para un paciente con FEVI <40%. Mantener el manejo actual. Reforzar educación sobre restricción hídrica estricta interdialítica para mantenerse por debajo de los 8 mL/kg/h.',
-    pillClass:    'pill-fevi', pillTexto: 'FEVI Óptimo'
-  },
-  {
-    id:           'fevi-limite',
-    min:          8, max: 10,
-    clase:        'risk-fevi-limite',
-    icono:        '💜',
-    etiqueta:     'FEVI — En límite',
-    titulo:       'Tasa de UF en límite para FEVI <40%',
-    subtitulo:    '8–10 mL/kg/h — rango máximo aceptable',
-    recomendacion:'La tasa de UF se encuentra en el rango máximo aceptable para pacientes con FEVI <40%. Monitorear estrechamente signos de hipotensión intradialítica y descompensación cardíaca. Considerar reducir la ganancia hídrica en la siguiente interdialisis.',
-    pillClass:    'pill-fevi', pillTexto: 'FEVI Límite'
-  },
-  {
-    id:           'fevi-excede',
-    min:          10, max: Infinity,
-    clase:        'risk-fevi-excede',
-    icono:        '🔴',
-    etiqueta:     'FEVI — Supera el límite',
-    titulo:       'Tasa de UF peligrosa para FEVI <40%',
-    subtitulo:    '> 10 mL/kg/h — riesgo cardiovascular severo',
-    recomendacion:'La tasa de UF supera el límite máximo de 10 mL/kg/h para pacientes con FEVI <40%. Riesgo elevado de hipotensión severa, isquemia miocárdica, arritmias y descompensación cardíaca aguda. Aplicar opciones correctivas de forma inmediata.',
-    pillClass:    'pill-fevi', pillTexto: 'FEVI Alto'
-  }
+  { id:'fevi-optimo', min:0,  max:8,        clase:'risk-fevi-optimo', icono:'💜', etiqueta:'FEVI — Óptimo',          titulo:'Tasa de UF óptima para FEVI <40%',    subtitulo:'< 8 mL/kg/h — dentro del rango ideal',         recomendacion:'La tasa de UF es óptima para un paciente con FEVI <40%. Mantener el manejo actual. Reforzar educación sobre restricción hídrica estricta interdialítica.', pillClass:'pill-fevi', pillTexto:'FEVI Óptimo' },
+  { id:'fevi-limite', min:8,  max:10,       clase:'risk-fevi-limite', icono:'💜', etiqueta:'FEVI — En límite',        titulo:'Tasa de UF en límite para FEVI <40%', subtitulo:'8–10 mL/kg/h — rango máximo aceptable',        recomendacion:'La tasa de UF se encuentra en el rango máximo aceptable para pacientes con FEVI <40%. Monitorear estrechamente signos de hipotensión intradialítica y descompensación cardíaca.', pillClass:'pill-fevi', pillTexto:'FEVI Límite' },
+  { id:'fevi-excede', min:10, max:Infinity, clase:'risk-fevi-excede', icono:'🔴', etiqueta:'FEVI — Supera el límite', titulo:'Tasa de UF peligrosa para FEVI <40%', subtitulo:'> 10 mL/kg/h — riesgo cardiovascular severo', recomendacion:'La tasa de UF supera el límite máximo de 10 mL/kg/h para pacientes con FEVI <40%. Riesgo elevado de hipotensión severa, isquemia miocárdica, arritmias y descompensación cardíaca aguda. Aplicar opciones correctivas de forma inmediata.', pillClass:'pill-fevi', pillTexto:'FEVI Alto' }
 ];
 
-/* ════════════════════════════════════════════════════════
-   INICIALIZACIÓN
-════════════════════════════════════════════════════════ */
 (function init() {
-  try {
-    App.historial = JSON.parse(localStorage.getItem('hd_hist') || '[]');
-  } catch (e) { App.historial = []; }
+  try { App.historial = JSON.parse(localStorage.getItem('hd_hist') || '[]'); } catch(e) { App.historial = []; }
   renderHistorial();
 })();
 
-/* ════════════════════════════════════════════════════════
-   MANEJO DE CONTROLES DEL FORMULARIO
-════════════════════════════════════════════════════════ */
-
-/** Actualiza la duración de sesión seleccionada */
-function setDuracion(horas, btnElement) {
+function setDuracion(horas, btn) {
   App.duracion = horas;
-  document.querySelectorAll('.dur-btn').forEach(function(b) { b.classList.remove('active'); });
-  btnElement.classList.add('active');
+  document.querySelectorAll('.dur-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
 }
-
-/** Actualiza el perfil cardiovascular seleccionado */
-function setPerfil(perfil, btnElement) {
+function setPerfil(perfil, btn) {
   App.perfil = perfil;
-  // Quitar clases activas de todos los botones
-  ['normal','moderado','fevi'].forEach(function(p) {
-    var btn = document.getElementById('perfil-' + p);
-    btn.className = 'perfil-btn';
-  });
-  // Aplicar clase activa al seleccionado
-  btnElement.classList.add('active-' + perfil);
+  ['normal','moderado','fevi'].forEach(function(p){ document.getElementById('perfil-'+p).className='perfil-btn'; });
+  btn.classList.add('active-'+perfil);
 }
 
-/* ════════════════════════════════════════════════════════
-   VALIDACIONES
-════════════════════════════════════════════════════════ */
-
-/**
- * Valida los inputs del formulario.
- * Permite peso de ingreso menor al seco (con advertencia clínica).
- * @returns {{ valido: boolean, error: string|null, advertencia: string|null }}
- */
 function validarEntradas(ps, pi) {
-  if (isNaN(ps) || isNaN(pi) || ps <= 0 || pi <= 0) {
-    return { valido: false, error: 'Por favor ingresa el peso seco y el peso de ingreso.', advertencia: null };
-  }
-  if (pi < ps) {
-    return {
-      valido: true,
-      error: null,
-      advertencia: 'El peso de ingreso es menor al peso seco. Se calculará la diferencia como negativa. Verifica si el paciente perdió peso o si hay un error de digitación.'
-    };
-  }
-  return { valido: true, error: null, advertencia: null };
+  if (isNaN(ps)||isNaN(pi)||ps<=0||pi<=0) return {valido:false,error:'Por favor ingresa el peso seco y el peso de ingreso.',advertencia:null};
+  if (pi<ps) return {valido:true,error:null,advertencia:'El peso de ingreso es menor al peso seco. Se calculará la diferencia como negativa. Verifica si el paciente perdió peso o si hay un error de digitación.'};
+  return {valido:true,error:null,advertencia:null};
 }
 
-/* ════════════════════════════════════════════════════════
-   LÓGICA CLÍNICA — CÁLCULOS
-════════════════════════════════════════════════════════ */
-
-/**
- * Calcula la tasa y volumen de ultrafiltración.
- * UF total = (ganancia × 1000) + UF adicional
- * UF rate  = UF total / (peso seco × horas)
- *
- * @param {number} ps         - Peso seco en kg
- * @param {number} pi         - Peso de ingreso en kg
- * @param {number} ufAdicional - Volumen adicional en mL
- * @param {number} horas       - Duración de la sesión en horas
- * @returns {{ ganancia, ghPct, ufTotal, ufRate }}
- */
 function calcularUF(ps, pi, ufAdicional, horas) {
-
   var ganancia = pi - ps;
   var ghPct    = (ganancia / ps) * 100;
-
-  var ufTotal = (ganancia * 1000) + ufAdicional;
-
-  // Evitar UF negativa
-  if (ufTotal < 0) {
-    ufTotal = 0;
-  }
-
-  var ufRate = ufTotal / (ps * horas);
-
-  return {
-    ganancia: ganancia,
-    ghPct: ghPct,
-    ufTotal: ufTotal,
-    ufRate: ufRate
-  };
+  var ufTotal  = (ganancia * 1000) + ufAdicional;
+  if (ufTotal < 0) ufTotal = 0;
+  return { ganancia:ganancia, ghPct:ghPct, ufTotal:ufTotal, ufRate:ufTotal/(ps*horas) };
 }
 
-/**
- * Calcula el peso máximo de ingreso para no superar un límite de UF dado.
- * UF máxima segura (mL) = limiteRate × ps × horas
- * Ganancia máxima (kg)  = UF máxima / 1000
- * Peso máximo ingreso   = ps + ganancia máxima
- *
- * @param {number} ps         - Peso seco en kg
- * @param {number} horas       - Duración de la sesión en horas
- * @param {number} limiteRate  - Límite de UF en mL/kg/h
- * @returns {{ ufMaxMl, ganMaxKg, pesoMaxIngreso }}
- */
+/* CORREGIDO: ganMaxKg descuenta el volumen adicional para reflejar
+   que el cebado/infusiones ya consumen parte de la UF disponible */
 function calcularPesoMaximoIngreso(ps, horas, limiteRate, ufAdicional) {
-
-  // Si no se envía volumen adicional, asumir 0 mL
   ufAdicional = ufAdicional || 0;
-
-  var ufMaxMl = limiteRate * ps * horas;
-  var ganMaxKg = ufMaxMl / 1000;
-
-  var adicionalKg = ufAdicional / 1000;
-
-  var pesoMaxIngreso = ps + ganMaxKg - adicionalKg;
-
-  return {
-    ufMaxMl: ufMaxMl,
-    ganMaxKg: ganMaxKg,
-    pesoMaxIngreso: pesoMaxIngreso
-  };
+  var ufMaxMl      = limiteRate * ps * horas;
+  var ganMaxKg     = (ufMaxMl - ufAdicional) / 1000;
+  var pesoMaxIngreso = ps + ganMaxKg;
+  return { ufMaxMl:ufMaxMl, ganMaxKg:ganMaxKg, pesoMaxIngreso:pesoMaxIngreso };
 }
 
-/**
- * Clasifica el riesgo según la tasa de UF y el perfil del paciente.
- * @param {number} ufRate - Tasa de UF calculada en mL/kg/h
- * @param {string} perfil - 'normal' | 'moderado' | 'fevi'
- * @returns {object} Objeto de categoría de riesgo
- */
 function clasificarRiesgo(ufRate, perfil) {
-  var tabla = (perfil === 'fevi') ? CATEGORIAS_FEVI : CATEGORIAS_NORMAL;
-  for (var i = 0; i < tabla.length; i++) {
-    if (ufRate >= tabla[i].min && ufRate < tabla[i].max) return tabla[i];
-  }
-  return tabla[tabla.length - 1];
+  var tabla = (perfil==='fevi') ? CATEGORIAS_FEVI : CATEGORIAS_NORMAL;
+  for (var i=0; i<tabla.length; i++) if (ufRate>=tabla[i].min && ufRate<tabla[i].max) return tabla[i];
+  return tabla[tabla.length-1];
 }
 
-/**
- * Genera las opciones correctivas para pacientes Normal/Moderado (> 13 mL/kg/h).
- * @returns {{ opciones, maxKg, excesoKg, durNecesaria, ufMaxMl }}
- */
 function generarOpcionesUF(ps, ufTotal, horas, ufAdicional) {
-  var segura = calcularPesoMaximoIngreso(ps, horas, LIMITE_NORMAL, ufAdicional);
-  var excesoKg      = (ufTotal / 1000) - segura.ganMaxKg;
-  var durNecesaria  = ufTotal / (LIMITE_NORMAL * ps);
-  var opciones      = [];
-
-  // Opción 1: extender sesión
-  var durExt = Math.ceil(durNecesaria * 2) / 2;
-  if (durExt > horas) {
-    opciones.push({
-      icon: '⏱️',
-      text: 'Extender la sesión a <strong>' + durExt.toFixed(1) + ' h</strong> para completar la UF de ' +
-            (ufTotal / 1000).toFixed(2) + ' kg dentro del límite de ' + LIMITE_NORMAL + ' mL/kg/h.'
-    });
-  }
-
-  // Opción 2: sesiones adicionales
-  var kgPorSesion = (LIMITE_NORMAL * ps * 4) / 1000;
-  var nSesiones   = Math.ceil((ufTotal / 1000) / kgPorSesion);
-  if (nSesiones >= 2) {
-    opciones.push({
-      icon: '🔁',
-      text: 'Distribuir en <strong>' + nSesiones + ' sesiones de 4 h</strong> (' +
-            ((ufTotal / 1000) / nSesiones).toFixed(2) + ' kg/sesión) para mantenerse dentro del límite.'
-    });
-  }
-
-  // Opción 3: reducir UF hoy y programar sesión adicional
-  opciones.push({
-    icon: '📉',
-    text: 'Limitar la UF de hoy a <strong>' + Math.round(segura.ufMaxMl).toLocaleString('es') + ' mL</strong> ' +
-          'y programar sesión adicional para los <strong>' + excesoKg.toFixed(2) + ' kg</strong> restantes.'
-  });
-
-  // Opción 4: meta interdialítica
-  opciones.push({
-    icon: '🎯',
-    text: 'Indicar al paciente no superar <strong>' + segura.ganMaxKg.toFixed(2) + ' kg</strong> de ganancia ' +
-          'entre sesiones (peso máximo al ingreso: <strong>' + segura.pesoMaxIngreso.toFixed(2) + ' kg</strong>).'
-  });
-
-  return {
-    opciones:     opciones,
-    maxKg:        segura.ganMaxKg,
-    excesoKg:     excesoKg,
-    durNecesaria: durNecesaria,
-    ufMaxMl:      segura.ufMaxMl,
-    pesoMaxIngreso: segura.pesoMaxIngreso
-  };
+  var segura      = calcularPesoMaximoIngreso(ps, horas, LIMITE_NORMAL, ufAdicional);
+  var excesoKg    = (ufTotal/1000) - segura.ganMaxKg;
+  var durNec      = ufTotal / (LIMITE_NORMAL * ps);
+  var opciones    = [];
+  var durExt = Math.ceil(durNec*2)/2;
+  if (durExt>horas) opciones.push({icon:'⏱️',text:'Extender la sesión a <strong>'+durExt.toFixed(1)+' h</strong> para completar la UF de '+(ufTotal/1000).toFixed(2)+' kg dentro del límite de '+LIMITE_NORMAL+' mL/kg/h.'});
+  var kgSes = (LIMITE_NORMAL*ps*4)/1000, nSes = Math.ceil((ufTotal/1000)/kgSes);
+  if (nSes>=2) opciones.push({icon:'🔁',text:'Distribuir en <strong>'+nSes+' sesiones de 4 h</strong> ('+((ufTotal/1000)/nSes).toFixed(2)+' kg/sesión) para mantenerse dentro del límite.'});
+  opciones.push({icon:'📉',text:'Limitar la UF de hoy a <strong>'+Math.round(segura.ufMaxMl-ufAdicional).toLocaleString('es')+' mL</strong> y programar sesión adicional para los <strong>'+excesoKg.toFixed(2)+' kg</strong> restantes.'});
+  opciones.push({icon:'🎯',text:'Indicar al paciente no superar <strong>'+segura.ganMaxKg.toFixed(2)+' kg</strong> de ganancia entre sesiones (peso máximo al ingreso: <strong>'+segura.pesoMaxIngreso.toFixed(2)+' kg</strong>).'});
+  return { opciones:opciones, maxKg:segura.ganMaxKg, excesoKg:excesoKg, durNecesaria:durNec, ufMaxMl:segura.ufMaxMl, pesoMaxIngreso:segura.pesoMaxIngreso };
 }
 
-/**
- * Genera las opciones correctivas para pacientes con FEVI <40% (> 10 mL/kg/h).
- * Usa el límite de FEVI_MAXIMO (10 mL/kg/h) como referencia.
- */
 function generarOpcionesFEVI(ps, ufTotal, horas) {
-  var seguraMax     = calcularPesoMaximoIngreso(ps, horas, FEVI_MAXIMO);
-  var seguraOpt     = calcularPesoMaximoIngreso(ps, horas, FEVI_OPTIMO);
-  var excesoKg      = (ufTotal / 1000) - seguraMax.ganMaxKg;
-  var durNecesaria  = ufTotal / (FEVI_MAXIMO * ps);
-  var opciones      = [];
-
-  // Opción 1: extender sesión al mínimo necesario
-  var durExt = Math.ceil(durNecesaria * 2) / 2;
-  if (durExt > horas) {
-    opciones.push({
-      icon: '⏱️',
-      text: 'Extender la sesión a <strong>' + durExt.toFixed(1) + ' h</strong> para mantenerse dentro del límite de ' + FEVI_MAXIMO + ' mL/kg/h (FEVI <40%).'
-    });
-  }
-
-  // Opción 2: sesiones adicionales
-  var kgPorSesion = (FEVI_MAXIMO * ps * 4) / 1000;
-  var nSesiones   = Math.ceil((ufTotal / 1000) / kgPorSesion);
-  if (nSesiones >= 2) {
-    opciones.push({
-      icon: '🔁',
-      text: 'Distribuir en <strong>' + nSesiones + ' sesiones de 4 h</strong> (' +
-            ((ufTotal / 1000) / nSesiones).toFixed(2) + ' kg/sesión) respetando el límite de FEVI <40%.'
-    });
-  }
-
-  // Opción 3: reducir UF hoy
-  opciones.push({
-    icon: '📉',
-    text: 'Limitar la UF de hoy a <strong>' + Math.round(seguraMax.ufMaxMl).toLocaleString('es') + ' mL</strong> ' +
-          'y programar sesión adicional para los <strong>' + excesoKg.toFixed(2) + ' kg</strong> restantes.'
-  });
-
-  // Opción 4: meta restrictiva — apuntar al óptimo de 8 mL/kg/h
-  opciones.push({
-    icon: '🎯',
-    text: 'Meta ideal: no superar <strong>' + seguraOpt.ganMaxKg.toFixed(2) + ' kg</strong> de ganancia ' +
-          '(peso máximo al ingreso: <strong>' + seguraOpt.pesoMaxIngreso.toFixed(2) + ' kg</strong>) para tasa de 8 mL/kg/h.'
-  });
-
-  // Opción 5: alerta cardíaca
-  opciones.push({
-    icon: '🫀',
-    text: 'Reforzar restricción hídrica estricta. En pacientes con FEVI <40%, tasas > 10 mL/kg/h aumentan el riesgo de descompensación cardíaca aguda, arritmias e hipotensión severa.'
-  });
-
-  return {
-    opciones:       opciones,
-    ganMaxKg:       seguraMax.ganMaxKg,
-    ganOptKg:       seguraOpt.ganMaxKg,
-    excesoKg:       excesoKg,
-    durNecesaria:   durNecesaria,
-    ufMaxMl:        seguraMax.ufMaxMl,
-    ufOptMl:        seguraOpt.ufMaxMl,
-    pesoMaxIngreso: seguraMax.pesoMaxIngreso
-  };
+  var seguraMax = calcularPesoMaximoIngreso(ps, horas, FEVI_MAXIMO);
+  var seguraOpt = calcularPesoMaximoIngreso(ps, horas, FEVI_OPTIMO);
+  var excesoKg  = (ufTotal/1000) - seguraMax.ganMaxKg;
+  var durNec    = ufTotal / (FEVI_MAXIMO * ps);
+  var opciones  = [];
+  var durExt = Math.ceil(durNec*2)/2;
+  if (durExt>horas) opciones.push({icon:'⏱️',text:'Extender la sesión a <strong>'+durExt.toFixed(1)+' h</strong> para mantenerse dentro del límite de '+FEVI_MAXIMO+' mL/kg/h (FEVI <40%).'});
+  var kgSes = (FEVI_MAXIMO*ps*4)/1000, nSes = Math.ceil((ufTotal/1000)/kgSes);
+  if (nSes>=2) opciones.push({icon:'🔁',text:'Distribuir en <strong>'+nSes+' sesiones de 4 h</strong> ('+((ufTotal/1000)/nSes).toFixed(2)+' kg/sesión) respetando el límite de FEVI <40%.'});
+  opciones.push({icon:'📉',text:'Limitar la UF de hoy a <strong>'+Math.round(seguraMax.ufMaxMl).toLocaleString('es')+' mL</strong> y programar sesión adicional para los <strong>'+excesoKg.toFixed(2)+' kg</strong> restantes.'});
+  opciones.push({icon:'🎯',text:'Meta ideal: no superar <strong>'+seguraOpt.ganMaxKg.toFixed(2)+' kg</strong> de ganancia (peso máximo al ingreso: <strong>'+seguraOpt.pesoMaxIngreso.toFixed(2)+' kg</strong>) para tasa de 8 mL/kg/h.'});
+  opciones.push({icon:'🫀',text:'Reforzar restricción hídrica estricta. En pacientes con FEVI <40%, tasas > 10 mL/kg/h aumentan el riesgo de descompensación cardíaca aguda, arritmias e hipotensión severa.'});
+  return { opciones:opciones, ganMaxKg:seguraMax.ganMaxKg, ganOptKg:seguraOpt.ganMaxKg, excesoKg:excesoKg, durNecesaria:durNec, ufMaxMl:seguraMax.ufMaxMl, ufOptMl:seguraOpt.ufMaxMl, pesoMaxIngreso:seguraMax.pesoMaxIngreso };
 }
 
-/* ════════════════════════════════════════════════════════
-   MANEJO DEL HISTORIAL
-════════════════════════════════════════════════════════ */
+function generarId() { return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+function guardarHistorial() { try { localStorage.setItem('hd_hist',JSON.stringify(App.historial)); } catch(e){} }
+function agregarSesion(s) { App.historial.unshift(s); if(App.historial.length>20) App.historial=App.historial.slice(0,20); guardarHistorial(); }
+function eliminarSesionPorId(id) { App.historial=App.historial.filter(function(s){return s.id!==id;}); guardarHistorial(); }
 
-function generarId() {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-}
-
-function guardarHistorial() {
-  try { localStorage.setItem('hd_hist', JSON.stringify(App.historial)); } catch (e) {}
-}
-
-function agregarSesion(entrada) {
-  App.historial.unshift(entrada);
-  if (App.historial.length > 20) App.historial = App.historial.slice(0, 20);
-  guardarHistorial();
-}
-
-function eliminarSesionPorId(id) {
-  App.historial = App.historial.filter(function(s) { return s.id !== id; });
-  guardarHistorial();
-}
-
-/* ════════════════════════════════════════════════════════
-   RENDER UI
-════════════════════════════════════════════════════════ */
-
-/**
- * Renderiza todos los resultados en pantalla.
- * Muestra sección naranja (normal/moderado) o púrpura (FEVI)
- * según el perfil y si supera el límite correspondiente.
- */
-function renderResultados(calc, categoria, ps, ufAdicional) {
-  var perfil = App.perfil;
-
-  // ── Badge de perfil ──
-  var p = PERFILES[perfil];
-  document.getElementById('perfil-badge-res').innerHTML =
-    '<div class="perfil-badge ' + p.badgeClass + '">' + p.icono + ' ' + p.label + '</div>';
-
-  // ── Semáforo ──
-  var riskCard = document.getElementById('risk-card');
-  riskCard.className = 'risk-card ' + categoria.clase;
-  document.getElementById('risk-icon').textContent  = categoria.icono;
-  document.getElementById('risk-label').textContent = categoria.etiqueta;
-  document.getElementById('risk-title').textContent = categoria.titulo;
-  document.getElementById('risk-sub').textContent   = categoria.subtitulo;
-
-  // ── Métricas principales ──
-  document.getElementById('m-gh').textContent       = calc.ghPct.toFixed(1) + '%';
+function renderResultados(calc, cat, ps, pi, ufAdicional) {
+  var p = PERFILES[App.perfil];
+  document.getElementById('perfil-badge-res').innerHTML='<div class="perfil-badge '+p.badgeClass+'">'+p.icono+' '+p.label+'</div>';
+  var rc = document.getElementById('risk-card');
+  rc.className='risk-card '+cat.clase;
+  document.getElementById('risk-icon').textContent  = cat.icono;
+  document.getElementById('risk-label').textContent = cat.etiqueta;
+  document.getElementById('risk-title').textContent = cat.titulo;
+  document.getElementById('risk-sub').textContent   = cat.subtitulo;
+  document.getElementById('m-gh').textContent       = calc.ghPct.toFixed(1)+'%';
   document.getElementById('m-uf-total').textContent = Math.round(calc.ufTotal).toLocaleString('es');
   document.getElementById('m-uf-rate').textContent  = calc.ufRate.toFixed(1);
-  document.getElementById('m-liq').textContent      = Math.abs(calc.ganancia).toFixed(2) +
-                                                       (calc.ganancia < 0 ? ' (↓)' : '');
-
-  // ── Recomendación ──
-  var recomBox = document.getElementById('recom-box');
-  recomBox.className = (perfil === 'fevi') ? 'recom-fevi' : 'recom';
-  document.getElementById('recom-text').textContent = categoria.recomendacion;
-
-  // ── Ocultar ambas secciones correctivas primero ──
-  document.getElementById('uf-section').style.display     = 'none';
+  document.getElementById('m-liq').textContent      = Math.abs(calc.ganancia).toFixed(2)+(calc.ganancia<0?' (↓)':'');
+  document.getElementById('recom-box').className    = (App.perfil==='fevi')?'recom-fevi':'recom';
+  document.getElementById('recom-text').textContent = cat.recomendacion;
+  document.getElementById('uf-section').style.display      = 'none';
   document.getElementById('uf-section-fevi').style.display = 'none';
-
-  // ── Sección correctiva según perfil ──
-  if (perfil === 'fevi') {
-    // Siempre mostrar sección FEVI con rangos, exceda o no
-    renderSeccionFEVI(ps, calc.ufTotal, categoria);
-    document.getElementById('uf-section-fevi').style.display = 'block';
-  } else {
-    // Normal / moderado: mostrar solo si supera 13 mL/kg/h
-    if (calc.ufRate > LIMITE_NORMAL) {
-    renderSeccionNormal(ps, calc.ufTotal, ufAdicional);
-    document.getElementById('uf-section').style.display = 'block';
-}
+  if (App.perfil==='fevi') {
+    renderSeccionFEVI(ps, calc.ufTotal, cat);
+    document.getElementById('uf-section-fevi').style.display='block';
+  } else if (calc.ufRate > LIMITE_NORMAL) {
+    renderSeccionNormal(ps, pi, calc.ufTotal, ufAdicional);
+    document.getElementById('uf-section').style.display='block';
   }
 }
 
-/** Rellena la sección naranja (Normal/Moderado > 13 mL/kg/h) */
-function renderSeccionNormal(ps, ufTotal, ufAdicional) {
- var datos = generarOpcionesUF(ps, ufTotal, App.duracion, ufAdicional);
-
-  document.getElementById('s-peso-max-ingreso').textContent = datos.pesoMaxIngreso.toFixed(2) + ' kg';
+/* CORREGIDO — los 3 bugs en esta función:
+   1. s-peso-max-ingreso y s-peso-max-horas ahora existen en el HTML
+   2. sin div.uf-grid duplicado
+   3. peso egreso = peso_ingreso - (ufTotal / 1000) — fórmula correcta */
+function renderSeccionNormal(ps, pi, ufTotal, ufAdicional) {
+  var d = generarOpcionesUF(ps, ufTotal, App.duracion, ufAdicional);
+  document.getElementById('s-peso-max-ingreso').textContent = d.pesoMaxIngreso.toFixed(2)+' kg';
   document.getElementById('s-peso-max-horas').textContent   = App.duracion;
-  document.getElementById('s-max-kg').textContent           = datos.maxKg.toFixed(2) + ' kg';
-  document.getElementById('s-exceso').textContent           = '+' + datos.excesoKg.toFixed(2) + ' kg';
-  document.getElementById('s-dur-min').textContent          = datos.durNecesaria.toFixed(1) + ' h';
-  document.getElementById('s-uf-max').textContent           = Math.round(datos.ufMaxMl).toLocaleString('es') + ' mL';
-  // Peso proyectado al finalizar la diálisis
-var pesoEgreso = ps + (ufAdicional / 1000);
-
-document.getElementById('s-peso-egreso').textContent =
-pesoEgreso.toFixed(2) + " kg";
-
-  document.getElementById('opciones-list').innerHTML = datos.opciones.map(function(o) {
-    return '<li><span class="op-icon">' + o.icon + '</span><span>' + o.text + '</span></li>';
+  document.getElementById('s-max-kg').textContent           = d.maxKg.toFixed(2)+' kg';
+  document.getElementById('s-exceso').textContent           = '+'+d.excesoKg.toFixed(2)+' kg';
+  document.getElementById('s-dur-min').textContent          = d.durNecesaria.toFixed(1)+' h';
+  document.getElementById('s-uf-max').textContent           = Math.round(d.ufMaxMl).toLocaleString('es')+' mL';
+  /* Peso egreso: peso de ingreso menos toda la UF que se va a extraer */
+  var pesoEgreso = pi - (ufTotal / 1000);
+  document.getElementById('s-peso-egreso').textContent = pesoEgreso.toFixed(2)+' kg';
+  document.getElementById('opciones-list').innerHTML = d.opciones.map(function(o){
+    return '<li><span class="op-icon">'+o.icon+'</span><span>'+o.text+'</span></li>';
   }).join('');
 }
 
-/** Rellena la sección púrpura (FEVI <40%) — siempre visible para este perfil */
-function renderSeccionFEVI(ps, ufTotal, categoria) {
-  var datos    = generarOpcionesFEVI(ps, ufTotal, App.duracion);
-  var excede   = categoria.id === 'fevi-excede';
-
-  // Peso máximo al ingreso (basado en límite de 10 mL/kg/h)
-  document.getElementById('f-peso-max-ingreso').textContent = datos.pesoMaxIngreso.toFixed(2) + ' kg';
+function renderSeccionFEVI(ps, ufTotal, cat) {
+  var d = generarOpcionesFEVI(ps, ufTotal, App.duracion);
+  var excede = cat.id==='fevi-excede';
+  document.getElementById('f-peso-max-ingreso').textContent = d.pesoMaxIngreso.toFixed(2)+' kg';
   document.getElementById('f-peso-max-horas').textContent   = App.duracion;
-
-  // Rangos UF óptima y máxima
-  document.getElementById('f-uf-optima').textContent = Math.round(datos.ufOptMl).toLocaleString('es');
-  document.getElementById('f-uf-max').textContent    = Math.round(datos.ufMaxMl).toLocaleString('es');
-
-  // Métricas adicionales
-  document.getElementById('f-gan-optima').textContent = datos.ganOptKg.toFixed(2) + ' kg';
-  document.getElementById('f-gan-max').textContent    = datos.ganMaxKg.toFixed(2) + ' kg';
-  document.getElementById('f-exceso').textContent     = excede ? ('+' + datos.excesoKg.toFixed(2) + ' kg') : '— kg';
-  document.getElementById('f-dur-min').textContent    = excede ? (datos.durNecesaria.toFixed(1) + ' h') : '< ' + App.duracion + ' h';
-
-  // Opciones: mostrar solo si excede el límite de 10 mL/kg/h
-  var opcionesEl = document.getElementById('opciones-list-fevi');
-  var tituloEl   = document.querySelector('.opciones-title-fevi');
+  document.getElementById('f-uf-optima').textContent        = Math.round(d.ufOptMl).toLocaleString('es');
+  document.getElementById('f-uf-max').textContent           = Math.round(d.ufMaxMl).toLocaleString('es');
+  document.getElementById('f-gan-optima').textContent       = d.ganOptKg.toFixed(2)+' kg';
+  document.getElementById('f-gan-max').textContent          = d.ganMaxKg.toFixed(2)+' kg';
+  document.getElementById('f-exceso').textContent           = excede?('+'+d.excesoKg.toFixed(2)+' kg'):'— kg';
+  document.getElementById('f-dur-min').textContent          = excede?(d.durNecesaria.toFixed(1)+' h'):'< '+App.duracion+' h';
+  var opEl = document.getElementById('opciones-list-fevi');
+  var tEl  = document.querySelector('.opciones-title-fevi');
   if (excede) {
-    opcionesEl.style.display = 'block';
-    tituloEl.style.display   = 'block';
-    opcionesEl.innerHTML = datos.opciones.map(function(o) {
-      return '<li><span class="op-icon">' + o.icon + '</span><span>' + o.text + '</span></li>';
-    }).join('');
+    opEl.style.display='block'; tEl.style.display='block';
+    opEl.innerHTML = d.opciones.map(function(o){return '<li><span class="op-icon">'+o.icon+'</span><span>'+o.text+'</span></li>';}).join('');
   } else {
-    opcionesEl.style.display = 'none';
-    tituloEl.style.display   = 'none';
+    opEl.style.display='none'; tEl.style.display='none';
   }
 }
 
-/** Renderiza el historial de sesiones */
 function renderHistorial() {
   var list = document.getElementById('hist-list');
   if (!list) return;
-  if (!App.historial.length) {
-    list.innerHTML = '<div class="empty">No hay sesiones registradas aún</div>';
-    return;
-  }
-
-  list.innerHTML = App.historial.slice(0, 10).map(function(h) {
-    // Buscar categoría en tabla correcta según perfil guardado
-    var tabla = (h.perfil === 'fevi') ? CATEGORIAS_FEVI : CATEGORIAS_NORMAL;
-    var cat   = null;
-    for (var i = 0; i < tabla.length; i++) {
-      if (tabla[i].id === h.riesgo) { cat = tabla[i]; break; }
-    }
-    if (!cat) cat = tabla[tabla.length - 1];
-
-    var perfilLabel = h.perfil === 'fevi' ? ' 💜' : h.perfil === 'moderado' ? ' ⚠️' : '';
-
-    return '<div class="hist-item">' +
-      '<div>' +
-       '<div class="hist-name">' + perfilLabel + '</div>' +
-        '<div class="hist-date">' + h.fecha + '</div>' +
-      '</div>' +
-      '<div class="hist-right">' +
-        '<div class="hist-uf">' + h.ufRate + ' mL/kg/h' +
-          '<span class="pill ' + cat.pillClass + '">' + cat.pillTexto + '</span>' +
-        '</div>' +
-        '<div class="hist-gh">GH: ' + h.ghPct + '%</div>' +
-      '</div>' +
-    '</div>';
+  if (!App.historial.length) { list.innerHTML='<div class="empty">No hay sesiones registradas aún</div>'; return; }
+  list.innerHTML = App.historial.slice(0,10).map(function(h){
+    var tabla=(h.perfil==='fevi')?CATEGORIAS_FEVI:CATEGORIAS_NORMAL, cat=null;
+    for(var i=0;i<tabla.length;i++) if(tabla[i].id===h.riesgo){cat=tabla[i];break;}
+    if(!cat) cat=tabla[tabla.length-1];
+    var pl=h.perfil==='fevi'?' 💜':h.perfil==='moderado'?' ⚠️':'';
+    return '<div class="hist-item"><div><div class="hist-name">'+pl+'</div><div class="hist-date">'+h.fecha+'</div></div>'+
+           '<div class="hist-right"><div class="hist-uf">'+h.ufRate+' mL/kg/h<span class="pill '+cat.pillClass+'">'+cat.pillTexto+'</span></div>'+
+           '<div class="hist-gh">GH: '+h.ghPct+'%</div></div></div>';
   }).join('');
 }
 
-/** Limpia el formulario completamente */
 function limpiarFormulario() {
-  document.getElementById('peso-seco').value    = '';
-  document.getElementById('peso-ingreso').value = '';
-  document.getElementById('uf-adicional').value = '';
+  document.getElementById('peso-seco').value='';
+  document.getElementById('peso-ingreso').value='';
+  document.getElementById('uf-adicional').value='';
   ocultarAlertas();
 }
+function mostrarError(msg){var e=document.getElementById('alert-error');e.innerHTML=msg;e.style.display='block';document.getElementById('alert-warn').style.display='none';}
+function mostrarAdvertencia(msg){var e=document.getElementById('alert-warn');e.innerHTML='<strong>Advertencia clínica</strong> '+msg;e.style.display='block';}
+function ocultarAlertas(){document.getElementById('alert-error').style.display='none';document.getElementById('alert-warn').style.display='none';}
+function mostrarConfirmBorrar(){document.getElementById('confirm-borrar').style.display='block';}
+function ocultarConfirmBorrar(){document.getElementById('confirm-borrar').style.display='none';}
+function mostrarResultados(){document.getElementById('form-card').style.display='none';document.getElementById('results').style.display='block';window.scrollTo({top:0,behavior:'smooth'});}
+function mostrarFormulario(){document.getElementById('results').style.display='none';document.getElementById('form-card').style.display='block';window.scrollTo({top:0,behavior:'smooth'});}
 
-
-/* ════════════════════════════════════════════════════════
-   HELPERS DE UI
-════════════════════════════════════════════════════════ */
-function mostrarError(msg) {
-  var el = document.getElementById('alert-error');
-  el.innerHTML = msg;
-  el.style.display = 'block';
-  document.getElementById('alert-warn').style.display = 'none';
-}
-
-function mostrarAdvertencia(msg) {
-  var el = document.getElementById('alert-warn');
-  el.innerHTML = '<strong>Advertencia clínica</strong> ' + msg;
-  el.style.display = 'block';
-}
-
-function ocultarAlertas() {
-  document.getElementById('alert-error').style.display = 'none';
-  document.getElementById('alert-warn').style.display  = 'none';
-}
-
-function mostrarConfirmBorrar() {
-  document.getElementById('confirm-borrar').style.display = 'block';
-}
-
-function ocultarConfirmBorrar() {
-  document.getElementById('confirm-borrar').style.display = 'none';
-}
-
-function mostrarResultados() {
-  document.getElementById('form-card').style.display = 'none';
-  document.getElementById('results').style.display   = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function mostrarFormulario() {
-  document.getElementById('results').style.display   = 'none';
-  document.getElementById('form-card').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-/* ════════════════════════════════════════════════════════
-   HANDLERS DE EVENTOS
-════════════════════════════════════════════════════════ */
-
-/** Calcula y renderiza resultados */
 function onCalcular() {
   ocultarAlertas();
-
-
-  var ps = parseFloat(
-  document.getElementById('peso-seco').value.replace(',', '.')
-);
-
-var pi = parseFloat(
-  document.getElementById('peso-ingreso').value.replace(',', '.')
-);
-
-var ufAdicional = parseFloat(
-  (document.getElementById('uf-adicional').value || '0').replace(',', '.')
-) || 0;
-
-  var validacion = validarEntradas(ps, pi);
-  if (!validacion.valido) { mostrarError(validacion.error); return; }
-  if (validacion.advertencia) { mostrarAdvertencia(validacion.advertencia); }
-
-  var calc      = calcularUF(ps, pi, ufAdicional, App.duracion);
-  var categoria = clasificarRiesgo(calc.ufRate, App.perfil);
-
-  var now   = new Date();
-  var fecha = now.toLocaleDateString('es-CO', { day:'2-digit', month:'2-digit', year:'2-digit' }) +
-              ' ' + now.toLocaleTimeString('es-CO', { hour:'2-digit', minute:'2-digit' });
-
-  var sesion = {
-    id:     generarId(),
-  
-    perfil: App.perfil,
-    fecha:  fecha,
-    ufRate: calc.ufRate.toFixed(1),
-    ghPct:  calc.ghPct.toFixed(1),
-    riesgo: categoria.id
-  };
+  var ps = parseFloat(document.getElementById('peso-seco').value.replace(',','.'));
+  var pi = parseFloat(document.getElementById('peso-ingreso').value.replace(',','.'));
+  var ufAdicional = parseFloat((document.getElementById('uf-adicional').value||'0').replace(',','.'))||0;
+  var v = validarEntradas(ps,pi);
+  if (!v.valido) { mostrarError(v.error); return; }
+  if (v.advertencia) mostrarAdvertencia(v.advertencia);
+  var calc = calcularUF(ps,pi,ufAdicional,App.duracion);
+  var cat  = clasificarRiesgo(calc.ufRate,App.perfil);
+  var now  = new Date();
+  var fecha= now.toLocaleDateString('es-CO',{day:'2-digit',month:'2-digit',year:'2-digit'})+' '+
+             now.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
+  var sesion = { id:generarId(), perfil:App.perfil, fecha:fecha, ufRate:calc.ufRate.toFixed(1), ghPct:calc.ghPct.toFixed(1), riesgo:cat.id };
   agregarSesion(sesion);
   App.ultimoIdCorregido = sesion.id;
-
-  renderResultados(calc, categoria, ps, ufAdicional);
+  renderResultados(calc, cat, ps, pi, ufAdicional);
   renderHistorial();
   mostrarResultados();
 }
 
-/** Vuelve al formulario con los datos para corregir */
 function onCorregir() {
-  if (App.ultimoIdCorregido) {
-    eliminarSesionPorId(App.ultimoIdCorregido);
-    App.ultimoIdCorregido = null;
-    renderHistorial();
-  }
-  ocultarAlertas();
-  mostrarFormulario();
+  if (App.ultimoIdCorregido) { eliminarSesionPorId(App.ultimoIdCorregido); App.ultimoIdCorregido=null; renderHistorial(); }
+  ocultarAlertas(); mostrarFormulario();
 }
-
-/** Nueva consulta: limpia todo */
 function onNuevaConsulta() {
-  limpiarFormulario();
-  App.ultimoIdCorregido = null;
-  // Resetear duración
-  document.querySelectorAll('.dur-btn').forEach(function(b) { b.classList.remove('active'); });
-  document.getElementById('d4').classList.add('active');
-  App.duracion = 4;
-  // Resetear perfil a Normal
-  setPerfil('normal', document.getElementById('perfil-normal'));
+  limpiarFormulario(); App.ultimoIdCorregido=null;
+  document.querySelectorAll('.dur-btn').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('d4').classList.add('active'); App.duracion=4;
+  setPerfil('normal',document.getElementById('perfil-normal'));
   mostrarFormulario();
 }
-
-/** Borra todo el historial */
 function onBorrarHistorial() {
-  App.historial = [];
-  App.ultimoIdCorregido = null;
-  guardarHistorial();
-  ocultarConfirmBorrar();
-  renderHistorial();
+  App.historial=[]; App.ultimoIdCorregido=null;
+  guardarHistorial(); ocultarConfirmBorrar(); renderHistorial();
 }
 </script>
 <script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function() {
     navigator.serviceWorker.register("./sw.js")
-      .then(function(reg) { console.log("SW registrado:", reg.scope); })
-      .catch(function(err) { console.log("SW error:", err); });
+      .then(function(reg){ console.log("SW registrado:",reg.scope); })
+      .catch(function(err){ console.log("SW error:",err); });
   });
 }
 </script>
