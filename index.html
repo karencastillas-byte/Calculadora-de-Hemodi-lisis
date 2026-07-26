@@ -422,10 +422,12 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
 <div class="peso-egreso-box">
   <div class="peso-egreso-label">Peso proyectado postdiálisis</div>
   <div class="peso-egreso-valor" id="s-peso-egreso">—</div>
- <div class="peso-egreso-sub">
-  Proyección según UF programada y parámetros de sesión.
+  <div class="peso-egreso-sub">
+    Proyección según UF programada y parámetros de sesión.
+  </div>
 </div>
 
+<div class="uf-grid">
         <div class="uf-grid">
           <div class="uf-metric">
             <div class="ml">Ganancia máx. segura</div>
@@ -1024,9 +1026,9 @@ function renderResultados(calc, categoria, ps, ufAdicional) {
   } else {
     // Normal / moderado: mostrar solo si supera 13 mL/kg/h
     if (calc.ufRate > LIMITE_NORMAL) {
-      renderSeccionNormal(ps, calc.ufTotal);
-      document.getElementById('uf-section').style.display = 'block';
-    }
+    renderSeccionNormal(ps, calc.ufTotal, ufAdicional);
+    document.getElementById('uf-section').style.display = 'block';
+}
   }
 }
 
