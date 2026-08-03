@@ -1,6 +1,6 @@
 // ── Service Worker — HD Calc ──────────────────────────
 // Versión del caché: cambiar este número al actualizar la app
-var CACHE_NAME = 'hd-calc-v5';
+var CACHE_NAME = 'hd-calc-v6';
 
 // Archivos que se guardan en el celular para funcionar sin internet
 var ARCHIVOS_CACHE = [
